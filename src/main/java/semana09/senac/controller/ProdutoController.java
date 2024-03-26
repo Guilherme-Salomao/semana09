@@ -37,6 +37,13 @@ public class ProdutoController {
     @PutMapping
     @Transactional
     public void atualizar(@RequestBody DadosAtualizaProduto dados){
+        var medico = produtoRepository.getReferenceById(dados.id());
+        medico.atualizarInformacao(dados);
+    }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Integer id){
+        produtoRepository.deleteById(id);
     }
 }

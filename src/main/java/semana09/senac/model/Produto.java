@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import semana09.senac.produto.DadosAtualizaProduto;
 import semana09.senac.produto.DadosCadastroProduto;
 
 @Table(name = "produto")
@@ -37,5 +38,9 @@ public class Produto {
                 ", descricao='" + descricao + '\'' +
                 ", preco=" + preco +
                 '}';
+    }
+
+    public void atualizarInformacao(DadosAtualizaProduto dados) {
+        this.descricao = dados.descricao();
     }
 }
