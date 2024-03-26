@@ -2,14 +2,14 @@ package semana09.senac.controller;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import semana09.senac.model.Produto;
+import org.springframework.web.bind.annotation.*;
+import semana09.senac.produto.DadosAtualizaProduto;
+import semana09.senac.produto.DadosListarProduto;
 import semana09.senac.produto.DadosCadastroProduto;
 import semana09.senac.repository.FabricanteRepository;
 import semana09.senac.repository.ProdutoRepository;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("produto")
@@ -24,8 +24,19 @@ public class ProdutoController {
     @PostMapping
     @Transactional
     public void cadastrar(@RequestBody DadosCadastroProduto dados){
-        produtoRepository.save(dados.produto());
-
+        System.out.println(dados);
         //fabricanteRepository.save(dados.fabricante());
+        //produtoRepository.save(new Produto(dados));
+    }
+
+    @GetMapping
+    public List<DadosListarProduto> listar() {
+        return produtoRepository.findAll().stream().map(DadosListarProduto::new).toList();
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody DadosAtualizaProduto dados){
+
     }
 }

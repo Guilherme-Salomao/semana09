@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import semana09.senac.produto.DadosCadastroFabricante;
 import semana09.senac.produto.DadosCadastroProduto;
 
 @Table(name = "fabricante")
@@ -18,13 +19,16 @@ public class Fabricante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String nome;
 
-    private Fabricante(String nome) {
+    public Fabricante(DadosCadastroFabricante dados){
         this.nome = nome;
+        this.id = id;
     }
 
+    public Fabricante(Integer id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
