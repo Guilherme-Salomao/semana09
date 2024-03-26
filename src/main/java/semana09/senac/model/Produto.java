@@ -1,10 +1,12 @@
 package semana09.senac.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import semana09.senac.produto.DadosCadastroProduto;
 
 @Table(name = "produto")
 @Entity
@@ -16,9 +18,28 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nome;
+
     private String descricao;
+
     private double preco;
     @ManyToOne
+
     private Fabricante fabricante;
+
+    public Produto(DadosCadastroProduto dados) {
+        this.nome = dados.nome();
+        this.descricao = dados.descricao();
+        this.preco = dados.preco();
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                '}';
+    }
 }
