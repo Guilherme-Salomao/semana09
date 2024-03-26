@@ -3,6 +3,7 @@ package semana09.senac.controller;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import semana09.senac.model.Produto;
 import semana09.senac.produto.DadosAtualizaProduto;
 import semana09.senac.produto.DadosListarProduto;
 import semana09.senac.produto.DadosCadastroProduto;
@@ -24,9 +25,8 @@ public class ProdutoController {
     @PostMapping
     @Transactional
     public void cadastrar(@RequestBody DadosCadastroProduto dados){
-        System.out.println(dados);
-        //fabricanteRepository.save(dados.fabricante());
-        //produtoRepository.save(new Produto(dados));
+        fabricanteRepository.save(dados.fabricante());
+        produtoRepository.save(new Produto(dados,dados.fabricante() ));
     }
 
     @GetMapping

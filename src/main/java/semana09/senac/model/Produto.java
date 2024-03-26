@@ -25,10 +25,11 @@ public class Produto {
     @ManyToOne
     private Fabricante fabricante;
 
-    public Produto(DadosCadastroProduto dados) {
+    public Produto(DadosCadastroProduto dados, Fabricante fabricante) {
         this.nome = dados.nome();
         this.descricao = dados.descricao();
         this.preco = dados.preco();
+        this.fabricante = fabricante;
     }
 
     @Override
