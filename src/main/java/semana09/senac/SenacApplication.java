@@ -9,5 +9,4 @@ public class SenacApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SenacApplication.class, args);
 	}
-
 }
